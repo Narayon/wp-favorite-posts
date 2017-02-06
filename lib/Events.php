@@ -39,11 +39,12 @@ class Events {
 
 		$this->data['postid'] = intval( \sanitize_text_field( $_POST['postid'] ) );
 
+		//<- valign
 		$user = new User( \get_current_user_id() );
 		$favorites = $user->update_favorite( $this->data['postid'] );
 
 		return $this->response(array(
-			'status' => 'success',
+			'status' => 'success', //<-valign
 			'favorite_data' => array( 'favorites' => $favorites ),
 		));
 	}
@@ -56,7 +57,7 @@ class Events {
 	 */
 	public function nonce() {
 		$data = array(
-			'status' => 'success',
+			'status' => 'success', //<-valign
 			'nonce' => \wp_create_nonce( 'log_favorites_nonce' ),
 		);
 
@@ -87,10 +88,10 @@ class Events {
 	 * @param $error string
 	 */
 	protected function send_error( $error = null ) {
-		$error = ( $error ) ? $error : __( 'Invalid form field', 'log-favorites' );
+		$error = ( $error ) ? $error : __( 'Invalid form field', 'log-favorites' ); //<- escreve isto em {}
 
 		return \wp_send_json(array(
-			'status' => 'error',
+			'status' => 'error', //<-valign
 			'message' => $error,
 		));
 	}

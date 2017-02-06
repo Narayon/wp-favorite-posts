@@ -25,7 +25,7 @@ class User {
 	 * @param    int $user_id  The user id.
 	 */
 	public function __construct( $user_id = null ) {
-		$this->user_id = ( isset( $user_id ) ) ? $user_id : \get_current_user_id();
+		$this->user_id = ( isset( $user_id ) ) ? $user_id : \get_current_user_id(); //<- separa isto no metodo tradicional dos brackets
 	}
 
 	/**
@@ -61,7 +61,7 @@ class User {
 	 * @return array
 	 */
 	private function get_favorites( $user_id = null ) {
-		$user_id   = ( isset( $user_id ) ) ? $user_id: $this->get_user_id();
+		$user_id   = ( isset( $user_id ) ) ? $user_id: $this->get_user_id(); //<- o mesmo aqui, escreve isto em {}
 		$favorites = \get_user_meta( $user_id, 'logfavorites', true );
 
 		if ( ! is_array( $favorites ) ) {
@@ -80,7 +80,7 @@ class User {
 	 * @return boolean
 	 */
 	public function is_favorite( $post_id, $user_id = null ) {
-		$user_id   = ( isset( $user_id ) ) ? $user_id: $this->get_user_id();
+		$user_id   = ( isset( $user_id ) ) ? $user_id: $this->get_user_id(); //<- o mesmo aqui
 		$favorites = $this->get_favorites( $user_id );
 
 		if ( in_array( $post_id, $favorites ) ) {
@@ -184,8 +184,8 @@ class User {
 				$post = \get_post( $post_id );
 
 				$output .= sprintf( '<li><a href="%s">%s</a></li>',
-					\get_permalink( $post_id ),
-					$post->post_title
+					\get_permalink( $post_id ), //<- escape functions
+					$post->post_title //<- escape functions
 				);
 			}
 

@@ -82,12 +82,13 @@ class Loader {
 	 */
 	public function filter_content( $content ) {
 		global $post;
-		$output = '';
+		$output = ''; //<- para que serviu ?
 
+		//<- divide este teste em 4 testes por negacao e cada um ao falhar salta fora do metodo. Assim se falhar um, escusa de fazer os restantes pedidos.
 		if ( $this->user->logged_in() && \is_single() && \in_the_loop() && \is_main_query() ) {
 			$content .= $this->get_favorites_button( $post->ID );
 		}
-
+	
 		return $content;
 	}
 
@@ -101,7 +102,7 @@ class Loader {
 	private function get_favorites_button( $post_id ) {
 		$button = sprintf( '<button id="favBtn" class="button-fav %s" data-postid="%s">%s</button>',
 			$this->user->is_favorite( $post_id ) ? 'active' : '',
-			$post_id,
+			$post_id, //<- escape functions
 			\esc_html__( 'Favorite Post', 'log-favorites' )
 		);
 

@@ -1,0 +1,24 @@
+{
+  "name": "narayon/log-favorites",
+  "description": "  ",
+  "type": "wordpress-plugin",
+  "keywords": ["wordpress", "plugin"],
+  "homepage": "https://github.com/Narayon/wp-favorite-posts",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Rui Barbosa",
+      "email": "info@narayon.com",
+      "homepage": "http://narayon.com/"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "log\\WP\\Plugin\\FavoritePosts\\": "lib/",
+      "log\\WP\\Plugin\\FavoritePosts\\Client\\": "client/",
+    }
+  },
+  "require": {
+    "squizlabs/php_codesniffer": "*"
+  }
+}

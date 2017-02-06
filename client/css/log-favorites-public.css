@@ -1,0 +1,46 @@
+.button-fav {
+  background-color: #222;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1;
+  padding: 12px;
+  padding-left: 40px;
+  position: relative;
+  text-shadow: none;
+}
+
+.button-fav:hover,
+.button-fav:focus,
+.button-fav:active,
+.button-fav.loading {
+  background-color: #333;
+}
+
+.button-fav:before {
+  background: center no-repeat url(../images/star-empty.svg);
+  background-size: 25px;
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: background .2s ease;
+  width: 40px;
+}
+
+.button-fav.active:before {
+  background-image: url(../images/star-full.svg);
+}
+
+.button-fav.loading {
+  pointer-events: none;
+}
+.button-fav.loading:before {
+  background-image: url(../images/loading.gif);
+}

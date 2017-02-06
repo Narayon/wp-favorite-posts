@@ -30,7 +30,7 @@ class I18n {
 	 */
 	public function load_plugin_textdomain() {
 		\load_plugin_textdomain(
-			'plugin-name',
+			'plugin-name', //<- e este o nome do plugin?
 			false,
 			dirname( dirname( \plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

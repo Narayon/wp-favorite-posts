@@ -80,7 +80,7 @@ class Routes {
 	 * @param $error string
 	 */
 	protected function send_error( $error = null ) {
-		$error = ( $error ) ? $error : \__( 'Ups, wrong user.', 'log-favorites' );
+		$error = ( $error ) ? $error : \__( 'Ups, wrong user.', 'log-favorites' ); //<- escreve isto com {}
 		$error = new \WP_Error( 'wrong_user', $error, array( 'status' => 401 ) );
 		$error = \rest_ensure_response( $error );
 

@@ -2,8 +2,8 @@
 /**
  * Register and implements the REST API custom routes
  *
- * @since      1.0.0
- * @package    Log_Favorites/lib
+ * @since    1.0.0
+ * @package  Log_Favorites/lib
  */
 
 namespace log\WP\Plugin\FavoritePosts;
@@ -30,9 +30,9 @@ class Routes {
 	/**
 	 * Callback for GET all favorites
 	 *
-	 * @since  1.0.0
-	 * @param  $data
-	 * @return array
+	 * @since    1.0.0
+	 * @param    $data    The body of the request
+	 * @return   array    All the favorites
 	 */
 	public function get_favorites( $data ) {
 		return $this->response( 'GET' );
@@ -41,9 +41,9 @@ class Routes {
 	/**
 	 * Callback for update favorite
 	 *
-	 * @since  1.0.0
-	 * @param  $data
-	 * @return array
+	 * @since    1.0.0
+	 * @param    $data    The body of the request
+	 * @return   array    All the updated favorites
 	 */
 	public function update_favorites( $data ) {
 		return $this->send_error();
@@ -53,8 +53,8 @@ class Routes {
 	 * Validates the user
 	 *
 	 * @since    1.0.0
-	 * @param    $user
-	 * @return   int User id
+	 * @param    $user    WP_User    The user object
+	 * @return   int    User id
 	 */
 	private function validate_user( $user ) {
 		if ( ! empty( $user ) ) {
@@ -77,7 +77,8 @@ class Routes {
 	 * Send an Error Response
 	 *
 	 * @since    1.0.0
-	 * @param $error string
+	 * @param    $error    string    The error to transform
+	 * @return   WP_Error    The error object
 	 */
 	protected function send_error( $error = null ) {
 		$error = ( $error ) ? $error : \__( 'Ups, wrong user.', 'log-favorites' );
@@ -91,8 +92,8 @@ class Routes {
 	 * Send a response
 	 *
 	 * @since    1.0.0
-	 * @param   $response string
-	 * @return  WP_REST_Response
+	 * @param    $response    string   The response to transform
+	 * @return   WP_REST_Response    The response object
 	 */
 	protected function response( $response ) {
 		$res = new \WP_REST_Response();
@@ -106,8 +107,8 @@ class Routes {
 	/**
 	* Get WP API namespace.
 	*
-	* @since 1.0.0
-	* @return string
+	* @since    1.0.0
+	* @return   string The API namespace
 	*/
 	public static function get_api_namespace() {
 		return 'log_favorites/v1';

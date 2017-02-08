@@ -2,8 +2,8 @@
 /**
  * Register and implements the shortcode
  *
- * @since      1.0.0
- * @package    Log_Favorites/lib
+ * @since    1.0.0
+ * @package  Log_Favorites/lib
  */
 
 namespace log\WP\Plugin\FavoritePosts;
@@ -23,8 +23,8 @@ class Shortcode {
 	 * The shortcode callback
 	 *
 	 * @since    1.0.0
-	 * @param    array $options  The shortcode options.
-	 * @return   string The shortcode HTML
+	 * @param    array    $options    The shortcode options.
+	 * @return   string    The shortcode HTML
 	 */
 	public function render_shortcode( $options ) {
 		$user   = new User();

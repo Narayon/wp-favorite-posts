@@ -5,8 +5,8 @@
  * Register AJAX callbacks, handles nonce generation
  * and validation and AJAX response
  *
- * @since      1.0.0
- * @package    Log_Favorites/lib
+ * @since    1.0.0
+ * @package  Log_Favorites/lib
  */
 
 namespace log\WP\Plugin\FavoritePosts;
@@ -39,11 +39,11 @@ class Events {
 
 		$this->data['postid'] = intval( \sanitize_text_field( $_POST['postid'] ) );
 
-		$user = new User( \get_current_user_id() );
+		$user      = new User( \get_current_user_id() );
 		$favorites = $user->update_favorite( $this->data['postid'] );
 
 		return $this->response(array(
-			'status' => 'success',
+			'status'        => 'success',
 			'favorite_data' => array( 'favorites' => $favorites ),
 		));
 	}
@@ -52,12 +52,12 @@ class Events {
 	 * Generate a Nonce
 	 *
 	 * @since    1.0.0
-	 * @return   Generated nonce.
+	 * @return   string    Generated nonce.
 	 */
 	public function nonce() {
 		$data = array(
 			'status' => 'success',
-			'nonce' => \wp_create_nonce( 'log_favorites_nonce' ),
+			'nonce'  => \wp_create_nonce( 'log_favorites_nonce' ),
 		);
 
 		return $this->response( $data );
@@ -84,22 +84,22 @@ class Events {
 	 * Send an Error Response
 	 *
 	 * @since    1.0.0
-	 * @param $error string
+	 * @param    $error    string    The error to send
 	 */
 	protected function send_error( $error = null ) {
 		$error = ( $error ) ? $error : __( 'Invalid form field', 'log-favorites' );
 
-		return \wp_send_json(array(
-			'status' => 'error',
+		return \wp_send_json( array(
+			'status'  => 'error',
 			'message' => $error,
-		));
+		) );
 	}
 
 	/**
 	 * Send a JSON response
 	 *
 	 * @since    1.0.0
-	 * @param $response mixed
+	 * @param    $response    mixed    The response to send
 	 */
 	protected function response( $response ) {
 		return \wp_send_json( $response );

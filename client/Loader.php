@@ -5,7 +5,8 @@
  * Defines the plugin name, version, and hooks to
  * enqueue the client-specific stylesheet and JavaScript.
  *
- * @package    Log_Favorites\client
+ * @since    1.0.0
+ * @package  Log_Favorites\client
  */
 
 namespace log\WP\Plugin\FavoritePosts\Client;
@@ -19,7 +20,7 @@ class Loader {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string $name The ID of this plugin.
+	 * @var      string    $name    The ID of this plugin.
 	 */
 	private $name;
 
@@ -28,7 +29,7 @@ class Loader {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string $version The current version of this plugin.
+	 * @var      string    $version    The current version of this plugin.
 	 */
 	private $version;
 
@@ -37,7 +38,7 @@ class Loader {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      User $user The current user.
+	 * @var      User    $user    The current user.
 	 */
 	private $user;
 
@@ -45,8 +46,8 @@ class Loader {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param    string $name    The name of the plugin.
-	 * @param    string $version The version of this plugin.
+	 * @param    string    $name    The name of the plugin.
+	 * @param    string    $version    The version of this plugin.
 	 */
 	public function __construct( $name, $version ) {
 		$this->name    = $name;
@@ -77,12 +78,11 @@ class Loader {
 	 * Filter the Content
 	 *
 	 * @since    1.0.0
-	 * @param    $content string
+	 * @param    $content    string    The post content
 	 * @return   string    The content with the button added.
 	 */
 	public function filter_content( $content ) {
 		global $post;
-		$output = '';
 
 		if ( $this->user->logged_in() && \is_single() && \in_the_loop() && \is_main_query() ) {
 			$content .= $this->get_favorites_button( $post->ID );
@@ -95,13 +95,13 @@ class Loader {
 	 * Add the Favorite Button
 	 *
 	 * @since    1.0.0
-	 * @param    $post_id int
-	 * @return   string   the button HTML.
+	 * @param    $post_id    int    The post id
+	 * @return   string    The button HTML.
 	 */
 	private function get_favorites_button( $post_id ) {
 		$button = sprintf( '<button id="favBtn" class="button-fav %s" data-postid="%s">%s</button>',
 			$this->user->is_favorite( $post_id ) ? 'active' : '',
-			$post_id,
+			\esc_attr( $post_id ),
 			\esc_html__( 'Favorite Post', 'log-favorites' )
 		);
 

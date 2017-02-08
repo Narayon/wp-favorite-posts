@@ -2,8 +2,8 @@
 /**
  * Register and implements the widget
  *
- * @since      1.0.0
- * @package    Log_Favorites/lib
+ * @since    1.0.0
+ * @package  Log_Favorites/lib
  */
 
 namespace log\WP\Plugin\FavoritePosts;
@@ -13,7 +13,7 @@ class Widget extends \WP_Widget {
 	/**
 	 * Sets up the widgets name etc
 	 *
-	 * @since      1.0.0
+	 * @since    1.0.0
 	 */
 	public function __construct() {
 		$widget_ops = array(
@@ -27,8 +27,7 @@ class Widget extends \WP_Widget {
 	/**
 	 * Register the widget
 	 *
-	 * @since      1.0.0
-	 *
+	 * @since    1.0.0
 	 */
 	public function register_widgets() {
 		\register_widget( $this );
@@ -37,10 +36,9 @@ class Widget extends \WP_Widget {
 	/**
 	 * Outputs the content of the widget
 	 *
-	 * @since      1.0.0
-	 *
-	 * @param array $args
-	 * @param array $instance
+	 * @since    1.0.0
+	 * @param    array    $args    The Widget args
+	 * @param    array    $instance    The widget options
 	 */
 	public function widget( $args, $instance ) {
 		// outputs the content of the widget
@@ -65,25 +63,28 @@ class Widget extends \WP_Widget {
 	/**
 	 * Outputs the options form on admin
 	 *
-	 * @param array $instance The widget options
+	 * @since    1.0.0
+	 * @param    array    $instance    The widget options
 	 */
 	public function form( $instance ) {
 		// outputs the options form on admin
 		$title = ! empty( $instance['title'] ) ? $instance['title'] : __( 'New title', 'text_domain' );
-		?>
-			<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
-			</p>
-		<?php
+		sprintf( '<p><label for="%s">%s</label><input class="widefat" id="%d" name="%s" type="text" value="%s"></p>',
+			\esc_attr( $this->get_field_id( 'title' ) ),
+			\esc_html__( 'Title:', 'log-favorites' ),
+			\esc_attr( $this->get_field_id( 'title' ) ),
+			\esc_attr( $this->get_field_name( 'title' ) ),
+			\esc_attr( $title )
+		);
 	}
 
 
 	/**
 	 * Processing widget options on save
 	 *
-	 * @param array $new_instance The new options
-	 * @param array $old_instance The previous options
+	 * @since    1.0.0
+	 * @param    array    $new_instance    The new options
+	 * @param    array    $old_instance    The previous options
 	 */
 	public function update( $new_instance, $old_instance ) {
 		// processes widget options to be saved

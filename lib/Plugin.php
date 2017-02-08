@@ -8,8 +8,8 @@
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
- * @since      1.0.0
- * @package    Log_Favorites/lib
+ * @since    1.0.0
+ * @package  Log_Favorites/lib
  */
 
 namespace log\WP\Plugin\FavoritePosts;
@@ -42,6 +42,8 @@ class Plugin {
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
 	 *
 	 * @since    1.0.0
+	 * @param    $name    The plugin name
+	 * @param    $version    The plugin version
 	 */
 	public function __construct( $name, $version ) {
 		$this->name    = $name;
@@ -51,11 +53,10 @@ class Plugin {
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Log_Favorites_i18n class in order to set the domain and to register the hook
+	 * Uses the I18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
-	 * @access   private
 	 */
 	private function set_locale() {
 		$plugin_i18n = new I18n();
@@ -68,7 +69,6 @@ class Plugin {
 	 * of the plugin.
 	 *
 	 * @since    1.0.0
-	 * @access   private
 	 */
 	private function define_public_hooks() {
 		$client_loader = new Client\Loader( $this->get_name(), $this->get_version() );
@@ -79,7 +79,6 @@ class Plugin {
 	 * Register all the widgets.
 	 *
 	 * @since    1.0.0
-	 * @access   private
 	 */
 	private function register_widgets() {
 		\add_action( 'widgets_init', array( new Widget, 'register_widgets' ) );
@@ -89,7 +88,6 @@ class Plugin {
 	 * Register all the shortcodes.
 	 *
 	 * @since    1.0.0
-	 * @access   private
 	 */
 	private function register_shortcodes() {
 		new Shortcode();
@@ -99,7 +97,6 @@ class Plugin {
 	 * Register all the rest api routes(endpoints).
 	 *
 	 * @since    1.0.0
-	 * @access   private
 	 */
 	private function register_endpoints() {
 		\add_filter( 'rest_api_init', array( new Routes, 'register_routes' ) );
